@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sonar Imaging Centre | SHA Executive Dashboard</title>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+    crossorigin="anonymous"
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="executive-styles.css" />
+</head>
+<body>
+  <div class="dashboard-shell container-fluid">
+    <header class="dashboard-header compact-header mb-4">
+      <div class="header-grid">
+        <div class="header-left">
+          <img src="Sonar Logo 1.1 (1).png" alt="Sonar Imaging Centre Logo" class="sonar-logo" />
+        </div>
+
+        <div class="header-center">
+          <p class="header-eyebrow mb-0">Sonar Imaging Centre</p>
+          <h1 class="header-title mb-0">Social Health Insurance Fund (SHA) Billing Report</h1>
+        </div>
+
+        <div class="header-right">
+          <div class="period-label">Reporting period</div>
+          <div id="reportingPeriod" class="period-value">-</div>
+        </div>
+      </div>
+    </header>
+
+    <section class="panel p-3 p-md-4 mb-4">
+      <div class="row g-3 align-items-end">
+        <div class="col-12 col-md-4">
+          <label class="form-label" for="fromDate">From date</label>
+          <input id="fromDate" type="date" class="form-control" />
+        </div>
+        <div class="col-12 col-md-4">
+          <label class="form-label" for="toDate">To date</label>
+          <input id="toDate" type="date" class="form-control" />
+        </div>
+        <div class="col-12 col-md-4">
+          <button id="applyDates" type="button" class="btn btn-outline-primary w-100">
+            Apply period
+          </button>
+        </div>
+        <div class="col-12">
+          <p class="date-helper mb-0">Choose a from and to date, then click Apply period to load that range. Defaults to the full dataset on load.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="kpi-hero-row mb-3">
+      <article class="kpi-card c-green">
+        <div class="kpi-head">
+          <div class="kpi-label">Total revenue generated</div>
+        </div>
+        <div id="kpiTotalRevenue" class="kpi-value">KES 0</div>
+      </article>
+      <article class="kpi-card c-blue">
+        <div class="kpi-head">
+          <div class="kpi-label">Total SHA billing</div>
+        </div>
+        <div id="kpiShaBilling" class="kpi-value">KES 0</div>
+      </article>
+      <article class="kpi-card c-orange">
+        <div class="kpi-head">
+          <div class="kpi-label">Total patient top-up (cash)</div>
+        </div>
+        <div id="kpiTopup" class="kpi-value">KES 0</div>
+      </article>
+      <article class="kpi-card c-blue">
+        <div class="kpi-head">
+          <div class="kpi-label">SHA coverage %</div>
+        </div>
+        <div id="kpiCoverage" class="kpi-value">0%</div>
+      </article>
+    </div>
+
+    <div class="kpi-strip mb-4">
+      <div class="kpi-strip-item">
+        <div>
+          <div class="kpi-strip-label">Insurance co-pay / top-up</div>
+          <div id="kpiInsuranceTopup" class="kpi-strip-value">KES 0</div>
+        </div>
+      </div>
+      <div class="kpi-strip-item">
+        <div>
+          <div class="kpi-strip-label">Total SHA studies</div>
+          <div id="kpiStudies" class="kpi-strip-value">0</div>
+        </div>
+      </div>
+      <div class="kpi-strip-item">
+        <div>
+          <div class="kpi-strip-label">Patient contribution %</div>
+          <div id="kpiPatientPct" class="kpi-strip-value">0%</div>
+        </div>
+      </div>
+    </div>
+
+    <section class="panel p-3 p-md-4 mb-4">
+      <div class="modality-title-row mb-3">
+        <h2 class="panel-title mb-0">Modality performance</h2>
+        <div class="modality-focus">Focus: MRI and CT (SHA-applicable modalities)</div>
+      </div>
+
+      <div class="modality-hero-stack">
+        <div class="modality-hero-card">
+          <div class="modality-hero-head mri">
+            <div>
+              <p class="modality-hero-title mb-0">MRI</p>
+              <p class="modality-hero-sub mb-0">Magnetic Resonance Imaging</p>
+            </div>
+          </div>
+          <div class="modality-metric-grid">
+            <div class="modality-metric-tile"><div class="modality-metric-label">Total studies</div><div id="mriStudies" class="modality-metric-value">0</div></div>
+            <div class="modality-metric-tile"><div class="modality-metric-label">SHA billing</div><div id="mriSha" class="modality-metric-value">KES 0</div></div>
+            <div class="modality-metric-tile"><div class="modality-metric-label">Insurance co-pay</div><div id="mriCopay" class="modality-metric-value">KES 0</div></div>
+            <div class="modality-metric-tile"><div class="modality-metric-label">Patient top-up</div><div id="mriTopup" class="modality-metric-value">KES 0</div></div>
+            <div class="modality-metric-tile"><div class="modality-metric-label">Total revenue</div><div id="mriRevenue" class="modality-metric-value">KES 0</div></div>
+            <div class="modality-metric-tile"><div class="modality-metric-label">Avg SHA billing</div><div id="mriAvgSha" class="modality-metric-value">KES 0</div></div>
+            <div class="modality-metric-tile"><div class="modality-metric-label">Avg top-up</div><div id="mriAvgTopup" class="modality-metric-value">KES 0</div></div>
+            <div class="modality-metric-tile"><div class="modality-metric-label">Avg co-pay</div><div id="mriAvgCopay" class="modality-metric-value">KES 0</div></div>
+            <div class="modality-metric-tile"><div class="modality-metric-label">Revenue share</div><div id="mriShare" class="modality-metric-value">0%</div></div>
+          </div>
+        </div>
+
+        <div class="modality-hero-card">
+          <div class="modality-hero-head ct">
+            <div>
+              <p class="modality-hero-title mb-0">CT</p>
+              <p class="modality-hero-sub mb-0">Computed Tomography</p>
+            </div>
+          </div>
+          <div class="modality-metric-grid">
+            <div class="modality-metric-tile"><div class="modality-metric-label">Total studies</div><div id="ctStudies" class="modality-metric-value">0</div></div>
+            <div class="modality-metric-tile"><div class="modality-metric-label">SHA billing</div><div id="ctSha" class="modality-metric-value">KES 0</div></div>
+            <div class="modality-metric-tile"><div class="modality-metric-label">Insurance co-pay</div><div id="ctCopay" class="modality-metric-value">KES 0</div></div>
+            <div class="modality-metric-tile"><div class="modality-metric-label">Patient top-up</div><div id="ctTopup" class="modality-metric-value">KES 0</div></div>
+            <div class="modality-metric-tile"><div class="modality-metric-label">Total revenue</div><div id="ctRevenue" class="modality-metric-value">KES 0</div></div>
+            <div class="modality-metric-tile"><div class="modality-metric-label">Avg SHA billing</div><div id="ctAvgSha" class="modality-metric-value">KES 0</div></div>
+            <div class="modality-metric-tile"><div class="modality-metric-label">Avg top-up</div><div id="ctAvgTopup" class="modality-metric-value">KES 0</div></div>
+            <div class="modality-metric-tile"><div class="modality-metric-label">Avg co-pay</div><div id="ctAvgCopay" class="modality-metric-value">KES 0</div></div>
+            <div class="modality-metric-tile"><div class="modality-metric-label">Revenue share</div><div id="ctShare" class="modality-metric-value">0%</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="table-responsive modality-compact-wrap">
+        <table class="table table-sm align-middle mb-0 modality-compact-table">
+          <tbody><tr><td>legacy fallback, hidden</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="row g-3 g-lg-4 mb-4">
+      <div class="col-12 col-xl-8">
+        <article class="panel p-3 p-md-4 h-100">
+          <h2 class="panel-title mb-1">Weekly SHA revenue performance</h2>
+          <p class="panel-subtitle mb-3">SHA billing, patient top-up and total revenue by week</p>
+          <div class="chart-wrap"><canvas id="weeklyChart"></canvas></div>
+        </article>
+      </div>
+      <div class="col-12 col-xl-4">
+        <article class="panel p-3 p-md-4 h-100">
+          <h2 class="panel-title mb-1">Insurance revenue share</h2>
+          <p class="panel-subtitle mb-3">Contribution by provider</p>
+          <div class="chart-wrap"><canvas id="insuranceShareChart"></canvas></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel p-3 p-md-4 mb-4">
+      <h2 class="panel-title mb-3">Vendor / provider analysis</h2>
+      <div class="table-responsive">
+        <table id="insuranceTable" class="table-executive">
+          <thead>
+            <tr>
+              <th>Insurance provider</th>
+              <th class="text-end">Insurance billing</th>
+              <th class="text-end">Top-up with cash</th>
+              <th class="text-end">Top-up with SHA</th>
+              <th class="text-end">Total revenue</th>
+              <th class="text-end">Studies</th>
+              <th class="text-end">Avg billing / study</th>
+              <th class="text-end">Revenue share</th>
+            </tr>
+          </thead>
+          <tbody><tr><td colspan="8" class="text-center py-4">Loading bundled dashboard data...</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel p-3 p-md-4 mb-4">
+      <h2 class="panel-title mb-3">Procedure analysis</h2>
+      <div class="table-responsive">
+        <table id="procedureTable" class="table-executive">
+          <thead>
+            <tr>
+              <th>Procedure</th>
+              <th class="text-end">Studies</th>
+              <th class="text-end">SHA billing</th>
+              <th class="text-end">Patient top-up</th>
+              <th class="text-end">Total revenue</th>
+            </tr>
+          </thead>
+          <tbody><tr><td colspan="5" class="text-center py-4">Loading bundled dashboard data...</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel p-3 p-md-4 mb-4">
+      <h2 class="panel-title mb-1">Executive insights</h2>
+      <p class="summary-period mb-3" id="summaryPeriod">Period: -</p>
+      <ul class="executive-summary-list" id="executiveSummaryList">
+        <li class="insight-row"><span class="insight-text">Summary will appear after data loads.</span></li>
+      </ul>
+    </section>
+
+    <footer class="dashboard-footer">
+      <div class="footer-left">Sonar Imaging Centre</div>
+      <div class="footer-center">Executive Dashboard</div>
+      <div class="footer-right" id="dataAsAt">Data as at: - | Powered by Business Intelligence</div>
+    </footer>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="data/sha-billing-data-inline.js?v=20260706c"></script>
+  <script src="executive-app.js?v=20260706c"></script>
+</body>
+</html>
