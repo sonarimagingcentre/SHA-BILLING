@@ -1,0 +1,337 @@
+:root {
+  --bg: #f2f7fb;
+  --surface: #ffffff;
+  --surface-2: #f7fbff;
+  --ink: #163149;
+  --ink-soft: #5a7285;
+  --brand: #0b72c9;
+  --brand-deep: #0b4d87;
+  --brand-light: #d9ebfb;
+  --line: #d8e6f3;
+  --shadow: 0 18px 40px rgba(12, 52, 90, 0.1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Manrope", "Segoe UI", sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 12% 12%, rgba(11, 114, 201, 0.15), transparent 36%),
+    radial-gradient(circle at 88% 18%, rgba(61, 164, 227, 0.2), transparent 34%),
+    linear-gradient(135deg, #eef5fb, #f8fbff 42%, #eef4fa);
+  min-height: 100vh;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("Sonar Logo 1.1 (1).png");
+  background-repeat: no-repeat;
+  background-position: center 62%;
+  background-size: min(52vw, 740px);
+  opacity: 0.045;
+  z-index: 0;
+}
+
+.dashboard-shell {
+  max-width: 1500px;
+  position: relative;
+  z-index: 1;
+}
+
+.dashboard-header {
+  background: linear-gradient(130deg, #0b72c9 0%, #0b5ba0 45%, #0a4578 100%);
+  border-radius: 22px;
+  box-shadow: var(--shadow);
+  color: #f5fbff;
+}
+
+.compact-header {
+  padding: 0.85rem 1rem;
+}
+
+.header-grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 0.9rem 1.1rem;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.header-center {
+  display: flex;
+  justify-content: center;
+  padding-right: clamp(0rem, 6vw, 3.5rem);
+}
+
+.header-title {
+  margin: 0;
+  text-align: center;
+  color: #f3f9ff;
+  font-size: clamp(1rem, 1.65vw, 1.45rem);
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.sonar-logo {
+  width: clamp(125px, 12vw, 168px);
+  height: auto;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.97);
+  border: 1px solid rgba(221, 238, 252, 0.7);
+  padding: 0.24rem 0.45rem;
+  box-shadow: 0 8px 18px rgba(9, 52, 90, 0.2);
+}
+
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+}
+
+.panel-title {
+  color: var(--ink);
+  font-size: 1.05rem;
+  font-weight: 760;
+}
+
+.form-label {
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  letter-spacing: 0.07em;
+  font-weight: 700;
+}
+
+.form-control,
+.btn {
+  min-height: 44px;
+  border-radius: 11px;
+}
+
+.form-control {
+  border: 1px solid #c6d9ea;
+}
+
+.form-control:focus {
+  border-color: #77afe1;
+  box-shadow: 0 0 0 0.2rem rgba(11, 114, 201, 0.15);
+}
+
+.btn-outline-primary {
+  color: #0b5ba0;
+  border-color: #8db7dd;
+}
+
+.btn-outline-primary:hover {
+  background: #0b72c9;
+  border-color: #0b72c9;
+}
+
+.kpi-card {
+  background: linear-gradient(160deg, var(--surface), var(--surface-2));
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  min-height: 124px;
+  box-shadow: var(--shadow);
+}
+
+.kpi-label {
+  color: var(--ink-soft);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+.kpi-value {
+  margin-top: 0.5rem;
+  font-size: clamp(1.18rem, 2.2vw, 1.75rem);
+  line-height: 1.2;
+  font-weight: 800;
+  color: var(--brand-deep);
+}
+
+.executive-modality-card {
+  border-radius: 16px;
+  border: 1px solid #d1e5f6;
+  box-shadow: var(--shadow);
+}
+
+.modality-mri {
+  background: linear-gradient(150deg, #eef6ff 0%, #f8fcff 52%, #e8f2fc 100%);
+}
+
+.modality-ct {
+  background: linear-gradient(150deg, #ecf8ff 0%, #f8fdff 52%, #e6f4ff 100%);
+}
+
+.modality-card-head {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.modality-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: #ffffff;
+  background: linear-gradient(145deg, #0b72c9, #0a4f8a);
+}
+
+.modality-title {
+  color: #123d5c;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.modality-metrics {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+}
+
+.modality-metrics > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.7rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px dashed rgba(24, 77, 116, 0.2);
+}
+
+.modality-metrics > div:last-child {
+  border-bottom: none;
+}
+
+.modality-metrics span {
+  color: #4c667a;
+  font-size: 0.84rem;
+  font-weight: 600;
+}
+
+.modality-metrics strong {
+  color: #0e3f66;
+  font-weight: 780;
+  font-size: 0.9rem;
+}
+
+.summary-period {
+  color: #4e6a7f;
+  font-size: 0.88rem;
+}
+
+.executive-summary-list {
+  margin: 0;
+  padding-left: 1.25rem;
+  color: #21435c;
+}
+
+.executive-summary-list li {
+  margin-bottom: 0.5rem;
+  line-height: 1.42;
+}
+
+.chart-wrap {
+  position: relative;
+  min-height: 320px;
+}
+
+.chart-wrap-wide {
+  min-height: 360px;
+}
+
+.table {
+  margin-bottom: 0;
+}
+
+table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: #eaf4fd;
+  color: #214660;
+  font-size: 0.77rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  border-bottom: 1px solid #d4e4f2;
+}
+
+table tbody td {
+  color: #23435b;
+  vertical-align: middle;
+}
+
+tr.sha-row {
+  background: rgba(11, 114, 201, 0.1) !important;
+}
+
+@media (max-width: 992px) {
+  .header-grid {
+    grid-template-columns: 1fr;
+    justify-items: stretch;
+    text-align: center;
+  }
+
+  .header-left,
+  .header-center {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .header-center {
+    padding-right: 0;
+  }
+
+  .chart-wrap {
+    min-height: 280px;
+  }
+
+  .chart-wrap-wide {
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 575px) {
+  .dashboard-header,
+  .panel,
+  .kpi-card {
+    border-radius: 14px;
+  }
+
+  .compact-header {
+    padding: 0.7rem 0.85rem;
+  }
+
+  .header-title {
+    font-size: 0.95rem;
+    line-height: 1.25;
+  }
+
+  body::before {
+    background-size: min(84vw, 420px);
+    background-position: center 70%;
+  }
+
+  .sonar-logo {
+    width: min(58vw, 180px);
+  }
+}
